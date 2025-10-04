@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطابع الرياض - خدمات الطباعة الشاملة</title>
+    
+    <!-- روابط Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- خطوط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7908410751799877" crossorigin="anonymous"></script>
+    
+    <style>
+        :root {
+            --primary-color: #1A365D;
+            --secondary-color: #F6AD55;
+            --accent-color: #E9B213;
+            --light-color: #F8F9FA;
+            --dark-color: #2D3748;
+            --gray-color: #A0AEC0;
+            --success-color: #38A169;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        body {
+            color: var(--dark-color);
+            line-height: 1.6;
+            background-color: #F5F7FA;
+            padding-top: 80px;
+        }
+
+        /* شريط التنقل الجديد */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link {
+            color: var(--dark-color);
+            font-weight: 600;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 15px 0;
+        }
+
+        .dropdown-item {
+            padding: 10px 20px;
+            transition: all 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+            color: var(--primary-color);
+            padding-right: 25px;
+        }
+
+        /* السلايدر الجديد */
+        .hero-slider {
+            position: relative;
+            height: 80vh;
+            min-height: 600px;
+            overflow: hidden;
+            margin-top: -80px;
+        }
+
+        .slider-container {
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 54, 93, 0.1);
+        }
+
+        .slide-content {
+            top: 30%;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .slide-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .slide-content p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .slide-content .hero-buttons {
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .slider-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .slider-dot.active {
+            background-color: white;
+            transform: scale(1.2);
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .slider-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-nav button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* تصميم جديد لقسم الخدمات */
+        .services-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-item {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover .service-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .service-content h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .service-content p {
+            color: var(--gray-color);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .service-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            color: var(--accent-color);
+            gap: 12px;
+        }
+
+        /* قسم معرض الأعمال */
+        .portfolio-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            margin: 5px;
+            background: white;
+            border: 1px solid var(--gray-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 250px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 93, 26, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .portfolio-desc {
+            color: var(--light-color);
+        }
+
+        /* قسم عن الشركة */
+        .about-section {
+            padding: 100px 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-title {
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+
+        /* قسم الاتصال */
+        .contact-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-left: 15px;
+            margin-top: 5px;
+        }
+
+        .contact-details h4 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .map-container {
+            margin-top: 40px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            height: 400px;
+        }
+
+        /* قسم طلب الخدمة */
+        .order-section {
+            padding: 100px 0;
+        }
+
+        .order-form {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(26, 54, 93, 0.1);
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            max-width: 200px;
+        }
+
+        .quantity-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--primary-color);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .quantity-btn:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        .quantity-btn:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        .quantity-input {
+            width: 80px;
+            height: 45px;
+            text-align: center;
+            border: 2px solid #e2e8f0;
+            border-left: none;
+            border-right: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            background: white;
+        }
+
+        .file-upload {
+            border: 2px dashed #cbd5e0;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8fafc;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary-color);
+            background: #f0f9ff;
+        }
+
+        .file-upload-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .upload-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .upload-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: white;
+        }
+
+        .upload-option:hover {
+            border-color: var(--primary-color);
+            background: #f0f9ff;
+            transform: translateY(-2px);
+        }
+
+        /* الفوتر الجديد */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-heading {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--accent-color);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact-icon {
+            margin-left: 10px;
+            color: var(--accent-color);
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-left: 10px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* الأزرار */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0F4A0F;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #A50E20;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* استجابة للشاشات الصغيرة */
+        @media (max-width: 478px) {
+ .slider-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 0px;
+            height: 0px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+.slide-content {
+    top: 30%;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+
+        }
+        @media (max-width: 768px) {
+            .hero-slider {
+                height: 60vh;
+                min-height: 400px;
+            }
+            
+            .slide-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .slide-content p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .service-item {
+                padding: 30px 20px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .order-form {
+                padding: 25px 20px;
+            }
+            
+            .upload-options {
+                flex-direction: column;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- شريط التنقل الجديد -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="mmt.webp" alt="شعار مطابع الرياض">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">الرئيسية</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            خدماتنا
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="pr-1-1.html">مطبوعات رقمية</a></li>
+                            <li><a class="dropdown-item" href="pr2-1.html">مطبوعات كبيرة الحجم</a></li>
+                            <li><a class="dropdown-item" href="pr4.html">مطبوعات هدايا</a></li>
+                            <li><a class="dropdown-item" href="pr3.html">منتجات التغليف</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#portfolio">معرض الأعمال</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#about">عن الشركة</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#contact">اتصل بنا</a>
+                    </li>
+                </ul>
+                <a href="#order" class="btn btn-accent">طلب خدمة</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- السلايدر الجديد -->
+    <section id="home" class="hero-slider">
+        <div class="slider-container">
+            <div class="slide active" style="background-image: url('3.webp');">
+                <div class="slide-content">
+                    <!-- <h1>مطابع الرياض للطباعة والدعاية والإعلان</h1>
+                    <p>نقدم منتجات طباعة عالية الجودة بأسعار تنافسية ووقت تسليم قياسي</p> -->
+                    <div class="hero-buttons">
+                        <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب خدمة</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('1.webp');">
+                <div class="slide-content">
+                    <!-- <h1>مطبوعات كبيرة الحجم</h1>
+                    <p>لافتات إعلانية وبانرات خارجية بجودة فائقة ومتانة عالية</p> -->
+                    <div class="hero-buttons">
+                       <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('99.webp');">
+                <div class="slide-content">
+                    <!-- <h1>مطبوعات هدايا ترويجية</h1>
+                    <p>تصاميم مبتكرة للهدايا الدعائية التي تعزز صورة علامتك التجارية</p> -->
+                    <div class="hero-buttons">
+                      <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('44.webp');">
+                <div class="slide-content">
+                    <!-- <h1>منتجات التغليف الاحترافية</h1>
+                    <p>عبوات وتغليف جذاب يحمي منتجاتك ويعزز قيمتها في السوق</p> -->
+                    <div class="hero-buttons">
+                       <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('5.webp');">
+                <div class="slide-content">
+                    <!-- <h1>منتجات التغليف الاحترافية</h1>
+                    <p>عبوات وتغليف جذاب يحمي منتجاتك ويعزز قيمتها في السوق</p> -->
+                    <div class="hero-buttons">
+                        <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('6.webp');">
+                <div class="slide-content">
+                    <!-- <h1>منتجات التغليف الاحترافية</h1>
+                    <p>عبوات وتغليف جذاب يحمي منتجاتك ويعزز قيمتها في السوق</p> -->
+                    <div class="hero-buttons">
+                     <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('7.webp');">
+                <div class="slide-content">
+                    <!-- <h1>منتجات التغليف الاحترافية</h1>
+                    <p>عبوات وتغليف جذاب يحمي منتجاتك ويعزز قيمتها في السوق</p> -->
+                    <div class="hero-buttons">
+                       <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('2.webp');">
+                <div class="slide-content">
+                    <!-- <h1>منتجات التغليف الاحترافية</h1>
+                    <p>عبوات وتغليف جذاب يحمي منتجاتك ويعزز قيمتها في السوق</p> -->
+                    <div class="hero-buttons">
+                      <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: url('8.webp');">
+                <div class="slide-content">
+                    <!-- <h1>منتجات التغليف الاحترافية</h1>
+                    <p>عبوات وتغليف جذاب يحمي منتجاتك ويعزز قيمتها في السوق</p> -->
+                    <div class="hero-buttons">
+                     <a href="the store.html" class="btn btn-primary">استكشف منتجاتنا</a>
+                        <a href="#order" class="btn btn-secondary">اطلب الآن</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-nav">
+            <button class="prev-slide"><i class="fas fa-chevron-right"></i></button>
+            <button class="next-slide"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        
+        <div class="slider-controls">
+            <div class="slider-dot active" data-slide="0"></div>
+            <div class="slider-dot" data-slide="1"></div>
+            <div class="slider-dot" data-slide="2"></div>
+            <div class="slider-dot" data-slide="3"></div>
+        </div>
+    </section>
+
+    <!-- قسم الخدمات الجديد -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="section-title">خدماتنا</h2>
+            <p class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
+                أَهْلًا بِكَ فِي وَاحَةِ الإِبْدَاعِ وَالْجَوْدَةِ.
+                مَوْقِعُنَا يَجْمَعُ لَكَ تَنَوُّعًا رَائِعًا لِخِدْمَاتِ الْبَرَنْدِ وَالطِّبَاعَةِ، مُصَمَّمٌ
+                لِيُلَابِيَ كَافَةَ احْتِيَاجَاتِكَ بِسُهُولَةٍ وَإِتْقَانٍ.
+                تَصَفَّحْ أَقْسَامَنَا بِسُهُولَةٍ
+            </p>
+
+            <div class="services-grid">
+                <!-- مطبوعات رقمية -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-print"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>مطبوعات رقمية</h3>
+                        <p>طباعة فائقة الجودة للمستندات والكتيبات والبروشورات بتقنيات حديثة</p>
+                        <a href="pr-1-1.html" class="service-link">
+                            استكشف الخدمة <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- مطبوعات كبيرة الحجم -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-expand-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>مطبوعات كبيرة الحجم</h3>
+                        <p>لافتات إعلانية، بانرات، وملصقات جدارية بمقاسات كبيرة وجودة عالية</p>
+                        <a href="pr2-1.html" class="service-link">
+                            استكشف الخدمة <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- مطبوعات هدايا -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>مطبوعات هدايا</h3>
+                        <p>تصميم وطباعة هدايا ترويجية مميزة تعكس صورة مؤسستك بشكل احترافي</p>
+                        <a href="pr4.html" class="service-link">
+                            استكشف الخدمة <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- منتجات التغليف -->
+                <div class="service-item">
+                    <div class="service-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>منتجات التغليف</h3>
+                        <p>تصميم وتصنيع عبوات ومنتجات تغليف جذابة تحمي منتجاتك وتعزز صورتها</p>
+                        <a href="pr3.html" class="service-link">
+                            استكشف الخدمة <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم معرض الأعمال -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">معرض أعمالنا</h2>
+            <p class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
+                إطلالة على بعض أعمالنا التي نفخر بها والتي تعكس مستوى جودتنا وتميزنا في مجال الطباعة والتصميم
+            </p>
+
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="print">الطباعة</button>
+                <button class="filter-btn" data-filter="design">التصميم</button>
+                <button class="filter-btn" data-filter="packaging">التغليف</button>
+                <button class="filter-btn" data-filter="advertising">الإعلانات</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="print">
+                    <img src="0.jpg" alt="مشروع طباعة" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">طباعة كتيبات</h3>
+                        <p class="portfolio-desc">طباعة كتيبات ترويجية لشركة تقنية</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="design">
+                    <img src="42b1d61702bab49dc499e733d152160e.jpg" alt="مشروع طباعة" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">هوية بصرية</h3>
+                        <p class="portfolio-desc">تصميم هوية بصرية لمطعم جديد</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="packaging">
+                    <img src="5.webp" alt="مشروع طباعة" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">تغليف منتجات</h3>
+                        <p class="portfolio-desc">تصميم وتصنيع عبوات منتجات فاخرة</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="advertising">
+                    <img src="21.jpg" alt="مشروع طباعة" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">ختم اعلاني</h3>
+                        <p class="portfolio-desc">تصميم ختم اعلاني لمؤسسة تعليمية</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="print">
+                    <img src="151a1f4b1a9be3909099d00a8f34a40c.jpg" alt="مشروع طباعة" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">طباعة اظرف</h3>
+                        <p class="portfolio-desc">طباعة اظرف لمؤسسة تجارية</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="design">
+                    <img src="55.webp" alt="مشروع طباعة" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <h3 class="portfolio-title">تصميم على الكوب</h3>
+                        <p class="portfolio-desc">تصميم للكوب لرواية جديدة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم عن الشركة -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">عن الشركة</h2>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">قصتنا</h3>
+                    <p>تأسست شركة طباعة في عام 2010 بهدف تقديم خدمات طباعة وتصميم عالية الجودة لعملائنا الكرام. ومنذ ذلك
+                        الحين، نمت شركتنا لتصبح واحدة من الشركات الرائدة في مجال الطباعة والتصميم الجرافيكي.</p>
+                    <p>نفخر بتقديم حلول متكاملة تلبي جميع احتياجات عملائنا من الأفراد والشركات، مع الحفاظ على أعلى
+                        معايير الجودة وأسرع أوقات التسليم.</p>
+                    <p>نؤمن بأن كل مشروع هو فرصة لبناء علاقة طويلة الأمد مع عملائنا، لذلك نحرص على تقديم أفضل خدمة ممكنة
+                        من الاستشارة الأولى حتى تسليم المنتج النهائي.</p>
+                </div>
+                <div class="about-image">
+                    <img src="rw.jpg" alt="صورة عن الشركة">
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-number">+6000</div>
+                    <div class="stat-title">عميل راضي</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">+12000</div>
+                    <div class="stat-title">مشروع مكتمل</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">16+</div>
+                    <div class="stat-title">سنوات خبرة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">24</div>
+                    <div class="stat-title">ساعة دعم</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الاتصال -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">اتصل بنا</h2>
+            <p class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
+                نحن هنا لمساعدتك! تواصل معنا لأي استفسار أو للحصول على عرض سعر
+            </p>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3 style="color: var(--primary-color); margin-bottom: 20px;">معلومات التواصل</h3>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>العنوان</h4>
+                            <p>شارع الملك فهد، الرياض، المملكة العربية السعودية</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4><a href="https://wa.me/9660572324073" style="text-decoration: none; color: var(--primary-color);">الهاتف</a></h4>
+                            <p>9660572324073+</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>البريد الالكتروني</h4>
+                            <p>bwksatmtbwat@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>ساعات العمل</h4>
+                            <p>الأحد - الخميس: 8 ص - 10 م</p>
+                            <p>الجمعة - السبت: 4 م - 10 م</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.2177541233523!2d46.736782700000006!3d24.616178700000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f05e470cd7f83%3A0x3b022e0b5be525cb!2z2YXZitiz2KfZhiDZhNmE2K_Yudin2YrYqSDZiNin2YTYpdi52YTYp9mG!5e0!3m2!1sar!2s!4v1759047419013!5m2!1sar!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم طلب الخدمة -->
+    <section id="order" class="order-section">
+        <div class="container">
+            <h2 class="section-title">طلب خدمة</h2>
+            <p class="text-center mb-5" style="max-width: 800px; margin: 0 auto;">
+                اختر الخدمة المطلوبة واملأ النموذج وسنتصل بك في أقرب وقت
+            </p>
+
+            <div class="order-form">
+                <form id="idCardOrderForm">
+                    <!-- حقل الفلترة حسب النوع -->
+                    <div class="form-group">
+                        <label class="form-label">نوع الخدمة *</label>
+                        <select class="form-control" id="productType" required>
+                            <option value="">-- اختر نوع الخدمة --</option>
+                            <option value="large-prints">مطبوعات كبيرة الحجم</option>
+                            <option value="gift-prints">مطبوعات هدايا</option>
+                            <option value="packaging-prints">منتجات التغليف</option>
+                            <option value="digital-prints">مطبوعات رقمية</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">اسم المنتج *</label>
+                        <select class="form-control" id="productName" required>
+                            <option value="">-- اختر المنتج --</option>
+                            <!-- سيتم ملء الخيارات ديناميكياً بناءً على النوع المحدد -->
+                        </select>
+                    </div>
+                    
+                    <!-- <div class="form-group">
+                        <label class="form-label">أوجه الطباعة *</label>
+                        <select class="form-control" id="printType" required>
+                            <option value="">-- اختر نوع الطباعة --</option>
+                            <option value="one-side">طبعة على وجه واحد</option>
+                            <option value="two-sides">طبعة على الوجهين</option>
+                        </select>
+                    </div> -->
+                    
+                    <div class="form-group">
+                        <label class="form-label">الكمية *</label>
+                        <div class="quantity-control">
+                            <button type="button" class="quantity-btn" id="decreaseQuantity">-</button>
+                            <input type="number" class="quantity-input" id="quantity" value="20" min="20" max="10000" required>
+                            <button type="button" class="quantity-btn" id="increaseQuantity">+</button>
+                        </div>
+                        <small>الحد الأدنى للطلب: 20 قطعة</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">رفع التصميم *</label>
+                        <div class="file-upload" id="fileUploadArea">
+                            <div class="file-upload-icon">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                            </div>
+                            <p>اسحب وأفلت الملف هنا أو انقر للاختيار</p>
+                            <p class="text-muted">الحد الأقصى لحجم الملف: 10MB</p>
+                            
+                            <div class="upload-options">
+                                <div class="upload-option" id="linkOption">
+                                    <i class="fas fa-link"></i>
+                                    <p>رابط التصميم</p>
+                                </div>
+                                <div class="upload-option" id="fileOption">
+                                    <i class="fas fa-file-upload"></i>
+                                    <p>رفع ملف</p>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="file" id="designFile" style="display: none;" accept=".jpg,.jpeg,.png,.pdf,.ai,.eps">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">ملاحظات إضافية</label>
+                        <textarea class="form-control" id="notes" rows="4" placeholder="أي ملاحظات أو متطلبات إضافية للتصميم..."></textarea>
+                    </div>
+                    
+                    <button type="button" id="whatsappOrderBtn" class="btn btn-primary btn-lg">إرسال الطلب عبر الواتساب</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر الجديد -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="mmt.webp" alt="شعار مطابع الرياض">
+                    </div>
+                    <p>شركة رائدة في مجال الطباعة والتصميم الجرافيكي، نقدم حلولاً إبداعية تلبي احتياجات عملائنا منذ عام 2010.</p>
+                    <div class="social-links">
+                    <a href="https://wa.me/9660572324073"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/mtbwt825?igsh=MTdsM3AyZGE3Nnh6cw%3D%3D&utm_source=qr"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@prant556?_t=ZS-903K1wMYqzh&_r=1"><i class="fab fa-tiktok"></i></a>
+
+                    </div>
+                </div>
+
+                <div class="footer-links-container">
+                    <h4 class="footer-heading">روابط سريعة</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#portfolio">معرض الأعمال</a></li>
+                        <li><a href="#about">عن الشركة</a></li>
+                        <li><a href="#contact">اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-container">
+                    <h4 class="footer-heading">خدماتنا</h4>
+                    <ul class="footer-links">
+                        <li><a href="pr-1-1.html">مطبوعات رقمية</a></li>
+                        <li><a href="pr2-1.html">مطبوعات كبيرة الحجم</a></li>
+                        <li><a href="pr4.html">مطبوعات هدايا</a></li>
+                        <li><a href="pr3.html">منتجات التغليف</a></li>
+                    </ul>
+                </div>
+
+                <!-- <div class="footer-contact"> -->
+                    <!-- <h4 class="footer-heading">معلومات التواصل</h4> -->
+                    <!-- <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <p>المملكة العربية السعودية</p>
+                        </div>
+                    </div> -->
+                    <!-- <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <p><a href="https://wa.me/966553375263" style="text-decoration: none; color: white;">966553375263+</a></p>
+                        </div>
+                    </div> -->
+                    <!-- <div class="footer-contact-item">
+                        <div class="footer-contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p>bwksatmtbwat@gmail.com</p>
+                        </div>
+                    </div> -->
+                <!-- </div> -->
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 مطابع الرياض. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // تأثير التمرير لشريط التنقل
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // فلترة معرض الأعمال
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // إزالة الفئة النشطة من جميع الأزرار
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // إضافة الفئة النشطة للزر المحدد
+                this.classList.add('active');
+                
+                // الحصول على قيمة الفلتر
+                const filterValue = this.getAttribute('data-filter');
+                
+                // إظهار/إخفاء العناصر حسب الفلتر
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // السلايدر
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.prev-slide');
+            const nextBtn = document.querySelector('.next-slide');
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(n) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                
+                currentSlide = (n + slides.length) % slides.length;
+                
+                slides[currentSlide].classList.add('active');
+                dots[currentSlide].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            function startSlideShow() {
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+            function stopSlideShow() {
+                clearInterval(slideInterval);
+            }
+
+            prevBtn.addEventListener('click', function() {
+                prevSlide();
+                stopSlideShow();
+                startSlideShow();
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                nextSlide();
+                stopSlideShow();
+                startSlideShow();
+            });
+            
+            dots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-slide'));
+                    showSlide(slideIndex);
+                    stopSlideShow();
+                    startSlideShow();
+                });
+            });
+
+            startSlideShow();
+
+            const slider = document.querySelector('.hero-slider');
+            slider.addEventListener('mouseenter', stopSlideShow);
+            slider.addEventListener('mouseleave', startSlideShow);
+        });
+
+        // التحكم في الكمية
+        const quantityInput = document.getElementById('quantity');
+        const decreaseBtn = document.getElementById('decreaseQuantity');
+        const increaseBtn = document.getElementById('increaseQuantity');
+        
+        decreaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 20) {
+                quantityInput.value = value - 1;
+            }
+        });
+        
+        increaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value < 10000) {
+                quantityInput.value = value + 1;
+            }
+        });
+        
+        quantityInput.addEventListener('change', () => {
+            let value = parseInt(quantityInput.value);
+            if (value < 20) quantityInput.value = 20;
+            if (value > 10000) quantityInput.value = 10000;
+        });
+        
+        // رفع الملفات
+        const fileUploadArea = document.getElementById('fileUploadArea');
+        const fileInput = document.getElementById('designFile');
+        
+        fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                fileUploadArea.innerHTML = `
+                    <div class="file-upload-icon">
+                        <i class="fas fa-file-check"></i>
+                    </div>
+                    <p>تم اختيار الملف: ${fileName}</p>
+                    <button type="button" class="btn btn-outline" id="changeFile">تغيير الملف</button>
+                `;
+                
+                document.getElementById('changeFile').addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    fileInput.click();
+                });
+            }
+        });
+        
+        // فلترة المنتجات حسب النوع
+        const productTypeSelect = document.getElementById('productType');
+        const productNameSelect = document.getElementById('productName');
+        
+        const productsByType = {
+            'large-prints': [
+                { name: 'لافتات إعلانية كبيرة', value: 'large-billboards' },
+                { name: 'بانرات خارجية', value: 'outdoor-banners' },
+                { name: 'ملصقات جدارية', value: 'wall-posters' },
+                { name: 'لوحات إرشادية', value: 'signage-boards' }
+            ],
+            'gift-prints': [
+                { name: 'بطاقات تهنئة', value: 'greeting-cards' },
+                { name: 'أغلفة هدايا', value: 'gift-wraps' },
+                { name: 'شهادات تقدير', value: 'appreciation-certificates' },
+                { name: 'كروت دعوة', value: 'invitation-cards' }
+            ],
+            'packaging-prints': [
+                { name: 'أكياس تسوق', value: 'shopping-bags' },
+                { name: 'علب منتجات', value: 'product-boxes' },
+                { name: 'أغلفة منتجات', value: 'product-packaging' },
+                { name: 'ملصقات علب', value: 'box-stickers' }
+            ],
+            'digital-prints': [
+                { name: 'بطاقات عمل', value: 'business-cards' },
+                { name: 'بروشورات', value: 'brochures' },
+                { name: 'فلايرات', value: 'flyers' },
+                { name: 'بطاقات تعريفية', value: 'id-cards' }
+            ]
+        };
+        
+        productTypeSelect.addEventListener('change', function() {
+            const selectedType = this.value;
+            productNameSelect.innerHTML = '<option value="">-- اختر المنتج --</option>';
+            
+            if (selectedType && productsByType[selectedType]) {
+                productsByType[selectedType].forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product.value;
+                    option.textContent = product.name;
+                    productNameSelect.appendChild(option);
+                });
+            }
+        });
+        
+        // إرسال الطلب عبر الواتساب
+        document.getElementById('whatsappOrderBtn').addEventListener('click', function() {
+            const productType = document.getElementById('productType').options[document.getElementById('productType').selectedIndex].text;
+            const productName = document.getElementById('productName').options[document.getElementById('productName').selectedIndex].text;
+            const printType = document.getElementById('printType').options[document.getElementById('printType').selectedIndex].text;
+            const quantity = document.getElementById('quantity').value;
+            const notes = document.getElementById('notes').value;
+            
+            if (!productType || !productName || !printType) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            const message = `طلب جديد من موقع مطابع الرياض:
+            
+نوع الخدمة: ${productType}
+اسم المنتج: ${productName}
+أوجه الطباعة: ${printType}
+الكمية: ${quantity}
+الملاحظات: ${notes || 'لا توجد'}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/9660572324073?text=${encodedMessage}`;
+            
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+
+</html>
