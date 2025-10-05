@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>  مطويات كبيرة </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #002623;
+
+            --secondary-color: #4a151e;
+
+            --accent-color: #2b9a779;
+
+            --light-color: #ffffff;
+
+            --dark-color: #161616;
+
+            --gray-color: #3d3a3b;
+
+            --success-color: #428177;
+
+            --decorative-color-1: #6b1f2a;
+
+            --decorative-color-2: #b9a779;
+
+            --decorative-color-3: #054239;
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+
+        body {
+            color: var(--dark-color);
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            padding-top: 50px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* أنماط الشريط العلوي */
+        nav {
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo img {
+            height: 50px;
+
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 25px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            right: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+
+        .hamburger {
+            /* display: none; */
+            cursor: pointer;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            background-color: var(--dark-color);
+            transition: all 0.3s;
+        }
+
+        /* أنماط صفحة الخدمة */
+        .service-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #204d28 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .service-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .service-description {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background-color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .breadcrumb-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .breadcrumb-content span {
+            margin: 0 10px;
+            color: var(--gray-color);
+        }
+
+        .breadcrumb-content .current {
+            color: var(--dark-color);
+        }
+
+        /* أنماط التصفية والترتيب */
+        .filters-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .filters-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .filter-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .sort-select {
+            padding: 8px 15px;
+            border: 1px solid var(--gray-color);
+            border-radius: 5px;
+            background: white;
+            color: var(--dark-color);
+        }
+
+        .filter-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-tag {
+            padding: 5px 15px;
+            background: var(--light-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .filter-tag.active,
+        .filter-tag:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* أنماط网格 المنتجات */
+
+        /*٨٨$<<$#_>/@<@/@>/@>/#[_#[#/[/#]]]]*/
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        /* إصلاح تنسيق الأزرار داخل البطاقات */
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            margin-right: 0;
+        }
+
+        /* تحسين استجابة التصميم للشاشات الصغيرة */
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+
+
+
+
+
+
+
+
+        /*$^$&"&"&%&%*%*%*%**%*%*%*%*%*%*%%*%* */
+
+
+        .product-card {
+            gap: 10px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            display: grid;
+            justify-content: center;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image img {
+            padding-top: 10px;
+            width: 100%;
+            height: 165px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .product-description {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .product-rating {
+            color: var(--secondary-color);
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            flex: 1;
+            margin-right: 0;
+
+        }
+
+        .btn-primary:hover {
+            background-color: #2c5282;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* أنماط Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        .pagination-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            border-radius: 5px;
+            background: white;
+            color: var(--dark-color);
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .pagination-item.active,
+        .pagination-item:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* أنماط القسم الجانبي */
+        .layout-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        .sidebar {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+        }
+
+        .sidebar-widget {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            margin-bottom: 10px;
+        }
+
+        .service-list a {
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-list a:hover {
+            color: var(--primary-color);
+        }
+
+        .service-list a i {
+            margin-left: 10px;
+            color: var(--primary-color);
+        }
+
+        .tags-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 5px 15px;
+            background: var(--light-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark-color);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* أنماط القسم الإضافي */
+        .service-features {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin: 50px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo img {
+            height: 50px;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-about p {
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--secondary-color);
+        }
+
+        .footer-contact-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact-icon {
+            margin-left: 10px;
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+
+        /* أنماط الاستجابة للشاشات الصغيرة */
+        @media (max-width: 992px) {
+            .layout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                order: 2;
+            }
+
+            .main-content {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0px;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+
+
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        .nav-menu {
+            position: fixed;
+            right: -100%;
+            top: 80px;
+            flex-direction: column;
+            background-color: white;
+            width: 100%;
+            text-align: center;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px 0;
+        }
+
+        .nav-menu.active {
+            right: 0px;
+        }
+
+        .nav-item {
+            margin: 15px 0;
+        }
+
+        .products-grid {
+            grid-template-rows: 1fr;
+        }
+
+        .filters-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .sort-select {
+            margin-top: 10px;
+            width: 100%;
+        }
+    </style>
+    <!-- روابط خطوط Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- شريط التنقل -->
+    <nav>
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <img src="logo.png" alt="شعار الشركة">
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="#services1" class="nav-link">خدماتنا</a></li>
+                <li class="nav-item"><a href="#portfolio" class="nav-link">معرض الأعمال</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">عن الشركة</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">اتصل بنا</a></li>
+                <li class="nav-item"><a href="#order" class="btn btn-accent">طلب خدمة</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- رأس الخدمة -->
+
+
+
+
+    <div class="service-header">
+        <div class="container">
+            <h1 class="service-title">الطباعة الرقمية</h1>
+            <p class="service-description">نقدم خدمات الطباعة الرقمية عالية الجودة بأسعار تنافسية، باستخدام أحدث
+                التقنيات وأفضل المواد الخام لضمان تحقيق نتائج مبهرة تلبي توقعات عملائنا الكرام.</p>
+        </div>
+    </div>
+
+    <!-- مسار التنقل -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="home2.html">الرئيسية</a>
+            <span>/</span>
+            <a href="">الخدمات</a>
+            <span>/</span>
+            <span class="current">الطباعة الرقمية</span>
+        </div>
+    </div>
+
+
+    <!--网格 المنتجات -->
+    <!--网格 المنتجات -->
+    <div class="products-grid">
+        <!-- منتج 1: بطاقات تعريفية -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="/pr2/049-billboard-250x250-1.webp" alt="بنرات واستيكرات" style="max-width: 100%; max-height: fit-content;">
+                <div class="product-badge">الأكثر مبيعاً</div>
+            </div>
+            <div class="product-content">
+                <h3 class="product-title"> بنرات واستيكرات</h3>
+                <p class="product-description">طباعة بطاقات تعريفية بجودة عالية بتصميمات مميزة تناسب شركتك.</p>
+                <div class="product-meta">
+                    <div class="product-price">50.00 ريال/100 بطاقة</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="product-actions" style="text-align: center">
+                    <a href="product-detail.html" class="btn btn-outline" style="text-align: center">التفاصيل</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- منتج 2: فلم -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="/pr2/005-billboard-250x250-1.webp" alt="بوستر" style="max-width: 100%; ">
+                <div class="product-badge">جديد</div>
+            </div>
+            <div class="product-content">
+                <h3 class="product-title"> بوستر </h3>
+                <p class="product-description">طباعة اختام إعلانية بجودة عالية الدقة ومقاومة للعوامل الجوية.</p>
+                <div class="product-meta">
+                    <div class="product-price">30.00 ريال/متر</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div class="product-actions" style="text-align: center">
+                    <a href="product-detail.html" class="btn btn-outline" style="text-align: center">التفاصيل</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- منتج 3: أظرف -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="/pr2/007-shop.webp" alt="حروف بارزة">
+                <div class="product-badge">عرض خاص</div>
+            </div>
+            <div class="product-content">
+                <h3 class="product-title">حروف بارزة</h3>
+                <p class="product-description">طباعة أظرف بجودة عالية وبمقاسات مختلفة تناسب جميع الاستخدامات.</p>
+                <div class="product-meta">
+                    <div class="product-price">20.00 ريال/100 ظرف</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+                <div class="product-actions" style="text-align: center">
+                    <a href="product-detail.html" class="btn btn-outline" style="text-align: center">التفاصيل</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- منتج 4: فلايرات -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="/pr2/048-poster-250x250-1.webp" alt="لوحات">
+                <div class="product-badge">الأكثر مبيعاً</div>
+            </div>
+            <div class="product-content">
+                <h3 class="product-title">لوحات</h3>
+                <p class="product-description">طباعة فلايرات إعلانية بألوان زاهية وتصميم جذاب لتعزيز الحملات التسويقية.
+                </p>
+                <div class="product-meta">
+                    <div class="product-price">40.00 ريال/100 فلاير</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="product-actions" style="text-align: center">
+                    <a href="product-detail.html" class="btn btn-outline" style="text-align: center">التفاصيل</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- منتج 5: طباعة المستندات -->
+
+        <div class="product-card">
+            <div class="product-image">
+                <img src="/pr2/006-truck-250x250-1.webp" alt="ستيكرات ">
+                <div class="product-badge">شعبي</div>
+            </div>
+            <div class="product-content">
+                <h3 class="product-title"> ستيكرات  </h3>
+                <p class="product-description">طباعة نوتات عادية بجودة عادية أو عالية، مع خيارات متعددة للتجليد.</p>
+                <div class="product-meta">
+                    <div class="product-price">0.30 ريال/صفحة</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="product-actions" style="text-align: center">
+                    <a href="product-detail.html" class="btn btn-outline" style="text-align: center">التفاصيل</a>
+                </div>
+            </div>
+        </div>
+        <!-- منتج 6: التصميم الجرافيكي -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="/pr2/banner.webp" alt=" ستاندات">
+                <div class="product-badge">شعبي</div>
+            </div>
+            <div class="product-content">
+                <h3 class="product-title">  ستاندات </h3>
+                <p class="product-description">طباعة ورق مراسلات بجودة عادية أو عالية، مع خيارات متعددة للتجليد.</p>
+                <div class="product-meta">
+                    <div class="product-price">0.30 ريال/صفحة</div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                <div class="product-actions" style="text-align: center">
+                    <a href="product-detail.html" class="btn btn-outline" style="text-align: center">التفاصيل</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" style="grid-template-columns: auto;">
+        <a href="pr2-1.html" class="pagination-item">&laquo;</a>
+        <a href="#" class="pagination-item active">1</a>
+        <!-- <a href="prodout2.html" class="pagination-item">2</a> -->
+
+        <a href="prodout2.html" class="pagination-item">&raquo;</a>
+    </div>
+
+    <!-- ميزات الخدمة -->
+    <div class="service-features">
+        <center>
+            <h2 class="section-title" style="margin-bottom: 15px;">مميزات خدمة الطباعة الرقمية</h2>
+        </center>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="feature-title">تسليم سريع</h3>
+                <p>نسلم طلباتك في أسرع وقت ممكن مع الحفاظ على أعلى معايير الجودة.</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3 class="feature-title">ألوان زاهية</h3>
+                <p>طباعة بألوان زاهية ودقيقة تعكس هوية علامتك التجارية باحترافية.</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="feature-title">تقنيات متطورة</h3>
+                <p>نستخدم أحدث تقنيات الطباعة الرقمية لضمان جودة ودقة عالية.</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-title">دعم فني</h3>
+                <p>فريق دعم فني متاح لمساعدتك في اختيار الأنسب لاحتياجاتك.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- الشريط الجانبي -->
+    <div class="sidebar">
+        <div class="sidebar-widget">
+            <h3 class="sidebar-title">جميع الخدمات</h3>
+            <ul class="service-list">
+                <li><a href="prodout.html"><i class="fas fa-chevron-left"></i> الطباعة الرقمية</a></li>
+                <li><a href="service-details.html"><i class="fas fa-chevron-left"></i> طباعة احجام كبيرة </a></li>
+                <li><a href="service-details.html"><i class="fas fa-chevron-left"></i> مطبوعات الهدايا</a></li>
+                <li><a href="service-details.html"><i class="fas fa-chevron-left"></i> منتجات التغليف </a></li>
+                <li><a href="service-details.html"><i class="fas fa-chevron-left"></i> دروع خشب واكريك </a></li>
+                <li><a href="service-details.html"><i class="fas fa-chevron-left"></i> عزنا بطبعتنا </a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-widget">
+            <h3 class="sidebar-title">الكلمات الدلالية</h3>
+            <div class="tags-cloud">
+                <a href="#" class="tag">طباعة</a>
+                <a href="#" class="tag">مستندات</a>
+                <a href="#" class="tag">بروشورات</a>
+                <a href="#" class="tag">كروت</a>
+                <a href="#" class="tag">ملصقات</a>
+                <a href="#" class="tag">تقويمات</a>
+                <a href="#" class="tag">فلايرات</a>
+                <a href="#" class="tag">ألوان</a>
+                <a href="#" class="tag">سريع</a>
+            </div>
+        </div>
+
+        <div class="sidebar-widget">
+            <h3 class="sidebar-title">عروض خاصة</h3>
+            <div class="special-offer">
+                <img src="logo.jpg" alt="عرض خاص" style="width: 100%; border-radius: 5px; margin-bottom: 10px;">
+                <h4>خصم 20% على الطباعة الرقمية</h4>
+                <p>احصل على خصم 20% على جميع خدمات الطباعة الرقمية للطلبات الكبيرة.</p>
+                <center> <a href="order.html" class="btn btn-primary" style="width: 90%; margin-top: 40px">استفد
+                        الآن</a></center>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="https://via.placeholder.com/150x50/ffffff/1a365d?text=Logo" alt="شعار الشركة">
+                    </div>
+                    <p>شركة متخصصة في خدمات الطباعة والتصميم، نقدم حلولاً إبداعية وعالية الجودة لعملائنا منذ أكثر من 10
+                        سنوات.</p>
+                    <div class="social-links">
+                        <a href="#" style="color: white; margin-left: 15px; font-size: 1.2rem;"><i
+                                class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-left: 15px; font-size: 1.2rem;"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: white; margin-left: 15px; font-size: 1.2rem;"><i
+                                class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; margin-left: 15px; font-size: 1.2rem;"><i
+                                class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3 class="footer-heading">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="home2.html">الرئيسية</a></li>
+                        <li><a href="home2.html">خدماتنا</a></li>
+                        <li><a href="home2.html">معرض الأعمال</a></li>
+                        <li><a href="home2.html">عن الشركة</a></li>
+                        <li><a href="home2.html">اتصل بنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3 class="footer-heading">خدماتنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="pr-1-1.html">مطبوعات رقمية </a></li>
+                        <li><a href="pr2-1.html">مطبوعات كبيرة </a></li>
+                        <li><a href="pr4.html">منتجات الهدايا </a></li>
+                        <li><a href="pr3.html">منتجات التغليف </a></li>
+                        <li><a href="pr5.html">دروع خشب واكريك </a></li>
+                        <li><a href="pr6.html"> عزنا بطبعتنا </a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3 class="footer-heading">معلومات التواصل</h3>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+                        <span>شارع الملك فهد، الرياض</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone footer-contact-icon"></i>
+                        <span>+966 11 123 4567</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope footer-contact-icon"></i>
+                        <span>info@tatbeeq.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2023 طباعة. جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // JavaScript للتحكم في قائمة الهامبرجر
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+
+        // فلترة المنتجات
+        const filterTags = document.querySelectorAll(".filter-tag");
+
+        filterTags.forEach(tag => {
+            tag.addEventListener("click", () => {
+                // إزالة النشاط من جميع علامات التصفية في نفس المجموعة
+                const parentGroup = tag.closest(".filter-group");
+                parentGroup.querySelectorAll(".filter-tag").forEach(t => t.classList.remove("active"));
+
+                // إضافة النشاط للعلامة المختارة
+                tag.classList.add("active");
+
+                // هنا يمكن إضافة كود التصفية الفعلي
+                filterProducts();
+            });
+        });
+
+        // تغيير الترتيب
+        const sortSelect = document.querySelector(".sort-select");
+
+        sortSelect.addEventListener("change", () => {
+            // هنا يمكن إضافة كود إعادة ترتيب المنتجات
+            sortProducts(sortSelect.value);
+        });
+
+        // وظائف التصفية والترتيب (ستكون في الواقع أكثر تعقيداً)
+        function filterProducts() {
+            console.log("تم تطبيق التصفية");
+            // كود التصفية الحقيقي سيعتمد على البيانات الحقيقية للمنتجات
+        }
+
+        function sortProducts(criteria) {
+            console.log("تم الترتيب حسب: " + criteria);
+            // كود الترتيب الحقيقي سيعتمد على البيانات الحقيقية للمنتجات
+        }
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+
+</html>
